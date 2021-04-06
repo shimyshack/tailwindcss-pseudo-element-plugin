@@ -14,7 +14,8 @@
     "trailingComma": "es5"
   },
   "scripts": {
-    "prepublishOnly": "node scripts/build.js"
+    "prepublishOnly": "node scripts/build.js",
+    "release": "./scripts/release.sh"
   },
   "devDependencies": {
     "autoprefixer": "^10.2.5",
