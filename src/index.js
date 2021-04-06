@@ -3,26 +3,28 @@ const { asValue, nameClass } = require('tailwindcss/jit/pluginUtils')
 
 const pseudoElementPlugin = plugin(
   function ({ addVariant, addUtilities, matchUtilities, theme, variants, e }) {
+    const pseudoElements = ['before', 'after']
     const values = theme('pseudoContent')
 
-    addVariant('before', ({ modifySelectors, separator }) => {
-      modifySelectors(({ className }) => {
-        return `.${e(`before${separator}${className}`)}::before`
+    pseudoElements.forEach((el) => {
+      addVariant(el, ({ modifySelectors, separator }) => {
+        modifySelectors(({ className }) => {
+          return `.${e(`${el}${separator}${className}`)}::${el}`
+        })
       })
     })
 
-    addVariant('after', ({ modifySelectors, separator }) => {
-      modifySelectors(({ className }) => {
-        return `.${e(`after${separator}${className}`)}::after`
-      })
-    })
+    const getContentValue = (value) => {
+      const val = `"${value}"`
+      return val
+    }
 
     addUtilities(
       [
         Object.entries(values).map(([key, value]) => {
           return {
             [`.${e(`pseudo-content-${key}`)}`]: {
-              content: `"${value}"`,
+              content: `${getContentValue(value)}`,
             },
           }
         }),
@@ -39,7 +41,7 @@ const pseudoElementPlugin = plugin(
             return []
           }
 
-          return { [nameClass('pseudo-content', modifier)]: { 'content': `"${value.replaceAll('_', ' ')}"` } }
+          return { [nameClass('pseudo-content', modifier)]: { 'content': `${getContentValue(value)}` } }
         },
       })
     }
@@ -50,7 +52,15 @@ const pseudoElementPlugin = plugin(
         empty: '',
         space: ' ',
         required: '* required',
-        asterisk: '*'
+        asterisk: '*',
+        ampersand: '&',
+        and: 'and',
+        'oxford-ampersand': ', &',
+        'oxford-and': ', and',
+        comma: ',',
+        middot: '\\b7',
+        mdash: '\\2014',
+        bar: '|',
       }
     },
     variants: {
