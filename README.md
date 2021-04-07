@@ -34,7 +34,7 @@ module.exports = {
 
 Use the `before` and `after` variants to style the `::before` and `::after` pseudo elements.
 
-Use the `pseudo-content-{value}` utilities to specify the content of the pseudo element::
+Use the `pseudo-content-{value}` utilities to specify the content of the pseudo element:
 
 ```html
 <label
@@ -96,8 +96,8 @@ module.exports = {
     }
   },
   variants: {
-    before: ['responsive', 'hover'],
-    after: ['responsive', 'hover']
+    before: ['responsive'],
+    after: ['responsive'],
   }
 }
 ```
