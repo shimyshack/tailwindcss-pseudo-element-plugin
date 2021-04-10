@@ -1,6 +1,6 @@
 {
   "name": "@shimyshack/tailwindcss-pseudo-element-plugin",
-  "version": "0.1.4",
+  "version": "1.0.0",
   "main": "src/index.js",
   "license": "MIT",
   "repository": "https://github.com/shimyshack/tailwindcss-pseudo-element-plugin",
