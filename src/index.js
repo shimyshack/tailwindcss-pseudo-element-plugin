@@ -61,6 +61,8 @@ const pseudoElementPlugin = plugin(
         middot: '\\b7',
         mdash: '\\2014',
         bar: '|',
+        gt: '>',
+        lt: '<',
       }
     },
     variants: {
