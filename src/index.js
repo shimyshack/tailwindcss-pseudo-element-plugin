@@ -14,35 +14,18 @@ const pseudoElementPlugin = plugin(
       })
     })
 
-    const getContentValue = (value) => {
-      const val = `"${value}"`
-      return val
-    }
-
     addUtilities(
       [
         Object.entries(values).map(([key, value]) => {
           return {
             [`.${e(`pseudo-content-${key}`)}`]: {
-              content: `${getContentValue(value)}`,
+              content: `${value}`,
             },
           }
         }),
       ],
       variants(['before', 'after'])
     )
-
-    addUtilities({
-      '.pseudo-content': {
-        content: 'attr(data-psuedo-content)',
-      },
-      '.pseudo-content-before': {
-        content: 'attr(data-psuedo-content-before)',
-      },
-      '.pseudo-content-after': {
-        content: 'attr(data-psuedo-content-after)',
-      },
-    }, variants(['before', 'after']))
 
     if (typeof matchUtilities !== 'undefined') {
       matchUtilities({
@@ -53,7 +36,9 @@ const pseudoElementPlugin = plugin(
             return []
           }
 
-          return { [nameClass('pseudo-content', modifier)]: { 'content': `${getContentValue(value)}` } }
+          value = value.startsWith('attr(') ? value : `"${value.replaceAll("_", " ")}"`
+
+          return { [nameClass('pseudo-content', modifier)]: { 'content': `${value}` } }
         },
       })
     }
@@ -61,20 +46,23 @@ const pseudoElementPlugin = plugin(
   {
     theme: {
       pseudoContent: {
-        empty: '',
-        space: ' ',
-        required: '* required',
-        asterisk: '*',
-        ampersand: '&',
-        and: 'and',
-        'oxford-ampersand': ', &',
-        'oxford-and': ', and',
-        comma: ',',
-        middot: '\\b7',
-        mdash: '\\2014',
-        bar: '|',
-        gt: '>',
-        lt: '<',
+        empty: '""',
+        space: '" "',
+        required: '"* required"',
+        asterisk: '"*"',
+        ampersand: '"&"',
+        and: '"and"',
+        'oxford-ampersand': '", &"',
+        'oxford-and': '", and"',
+        comma: '","',
+        middot: '"\\b7"',
+        mdash: '"\\2014"',
+        bar: '"|"',
+        gt: '">"',
+        lt: '"<"',
+        both: 'attr(data-pseudo-content-both)',
+        before: 'attr(data-pseudo-content-before)',
+        after: 'attr(data-pseudo-content-after)'
       }
     },
     variants: {

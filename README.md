@@ -34,25 +34,26 @@ module.exports = {
 
 Use the `before` and `after` variants to style the `::before` and `::after` pseudo elements.
 
-### Use with [data] attributes
+### Use with plugin options
 
-`[data-psuedo-content]` example:
+`[data-pseudo-content-both]` example:
 
 ```html
-<div data-psuedo-content="both" class="before:pseudo-content after:pseudo-content">...</div>
+<div
+  data-pseudo-content-both="both"
+  class="before:pseudo-content-both after:pseudo-content-both"
+>...</div>
 ```
 
 `[data-pseudo-content-before]` and `[data-pseudo-content-after]` example:
 
 ```html
 <div
-  data-psuedo-content-before="before"
-  data-psuedo-content-before="after"
+  data-pseudo-content-before="before"
+  data-pseudo-content-after="after"
   class="before:pseudo-content-before after:pseudo-content-after"
 >...</div>
 ```
-
-### Use with plugin options
 
 Use the `pseudo-content-{value}` utilities to specify the content of the pseudo element:
 
@@ -108,20 +109,23 @@ module.exports = {
   theme: {
     extend: {
       pseudoContent: {
-        empty: '',
-        space: ' ',
-        required: '* required',
-        asterisk: '*',
-        ampersand: '&',
-        and: 'and',
-        'oxford-ampersand': ', &',
-        'oxford-and': ', and',
-        comma: ',',
-        middot: '\\b7',
-        mdash: '\\2014',
-        bar: '|',
-        gt: '>',
-        lt: '<',
+        empty: '""',
+        space: '" "',
+        required: '"* required"',
+        asterisk: '"*"',
+        ampersand: '"&"',
+        and: '"and"',
+        'oxford-ampersand': '", &"',
+        'oxford-and': '", and"',
+        comma: '","',
+        middot: '"\\b7"',
+        mdash: '"\\2014"',
+        bar: '"|"',
+        gt: '">"',
+        lt: '"<"',
+        both: 'attr(data-pseudo-content-both)',
+        before: 'attr(data-pseudo-content-before)',
+        after: 'attr(data-pseudo-content-after)'
       }
     }
   },
