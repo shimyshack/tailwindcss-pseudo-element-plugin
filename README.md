@@ -34,6 +34,26 @@ module.exports = {
 
 Use the `before` and `after` variants to style the `::before` and `::after` pseudo elements.
 
+### Use with [data] attributes
+
+`[data-psuedo-content]` example:
+
+```html
+<div data-psuedo-content="both" class="before:pseudo-content after:pseudo-content">...</div>
+```
+
+`[data-pseudo-content-before]` and `[data-pseudo-content-after]` example:
+
+```html
+<div
+  data-psuedo-content-before="before"
+  data-psuedo-content-before="after"
+  class="before:pseudo-content-before after:pseudo-content-after"
+>...</div>
+```
+
+### Use with plugin options
+
 Use the `pseudo-content-{value}` utilities to specify the content of the pseudo element:
 
 ```html
@@ -44,23 +64,28 @@ Use the `pseudo-content-{value}` utilities to specify the content of the pseudo 
 </label>
 ```
 
-You can even use your own custom content. Spaces must be underscore characters:
+### Use with JIT
+
+Use the `pseudo-content-[value]` utilities to specify the content of the pseudo element.
+
+Spaces must be underscore characters:
 
 ```html
-<div class="before:block before:bg-red-500 before:psuedo-content-[Whatever_you_want_to_say]">
+<div class="before:block before:bg-red-500 before:pseudo-content-[Whatever_you_want_to_say]">
   ...
 </div>
 ```
+
+## More Examples
 
 An example of a punctuated list:
 
 ```html
 <ul class="inline-block">
-  <li class="inline-block after:inline-block after:pseudo-content-middot after:mx-1">Item 1</li>
+  <li class="inline-block after:inline-block after:pseudo-content-comma after:mr-1">Item 1</li>
   <li class="inline-block after:inline-block after:pseudo-content-comma after:mr-1">Item 2</li>
-  <li class="inline-block after:inline-block after:pseudo-content-comma after:mr-1">Item 3</li>
-  <li class="inline-block after:inline-block after:pseudo-content-oxford-ampersand after:mr-1">Item 4</li>
-  <li class="inline-block">Item 5</li>
+  <li class="inline-block after:inline-block after:pseudo-content-oxford-ampersand after:mr-1">Item 3</li>
+  <li class="inline-block">Item 4</li>
 </ul>
 ```
 

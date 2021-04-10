@@ -32,6 +32,18 @@ const pseudoElementPlugin = plugin(
       variants(['before', 'after'])
     )
 
+    addUtilities({
+      '.pseudo-content': {
+        content: 'attr(data-psuedo-content)',
+      },
+      '.pseudo-content-before': {
+        content: 'attr(data-psuedo-content-before)',
+      },
+      '.pseudo-content-after': {
+        content: 'attr(data-psuedo-content-after)',
+      },
+    }, variants(['before', 'after']))
+
     if (typeof matchUtilities !== 'undefined') {
       matchUtilities({
         'pseudo-content': (modifier, { theme }) => {
