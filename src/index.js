@@ -24,7 +24,7 @@ const pseudoElementPlugin = plugin(
           }
         }),
       ],
-      variants(['before', 'after'])
+      variants('pseudoElements')
     )
 
     if (typeof matchUtilities !== 'undefined') {
@@ -66,8 +66,7 @@ const pseudoElementPlugin = plugin(
       }
     },
     variants: {
-      before: ['responsive'],
-      after: ['responsive'],
+      pseudoElements: ['responsive', 'before', 'after'],
     },
   }
 )
