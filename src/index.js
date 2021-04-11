@@ -14,7 +14,19 @@ const pseudoElementPlugin = plugin(
       })
     })
 
-    // JIT mode, otherwise its AOT mode
+    addUtilities(
+      [
+        Object.entries(values).map(([key, value]) => {
+          return {
+            [`.${e(`pseudo-content-${key}`)}`]: {
+              content: `${value}`,
+            },
+          }
+        }),
+      ],
+      variants('pseudoElements')
+    )
+
     if (typeof matchUtilities !== 'undefined') {
       matchUtilities({
         'pseudo-content': (modifier, { theme }) => {
@@ -29,19 +41,6 @@ const pseudoElementPlugin = plugin(
           return { [nameClass('pseudo-content', modifier)]: { 'content': `${value}` } }
         },
       })
-    } else {
-      addUtilities(
-        [
-          Object.entries(values).map(([key, value]) => {
-            return {
-              [`.${e(`pseudo-content-${key}`)}`]: {
-                content: `${value}`,
-              },
-            }
-          }),
-        ],
-        variants('pseudoElements')
-      )
     }
   },
   {
